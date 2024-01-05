@@ -62,6 +62,7 @@ $lang['help'] = <<<'EOD'
    <li>googleFontUrl</li>
    <li>galleryCovers</li>
    <li>youTubePlayer</li>
+   <li>vimeoPlayer</li>
    <li>cssMinifier</li>
    <li>twitterFeed</li>
    <li>facebookFeed</li>
@@ -154,6 +155,21 @@ Use the following in the page template:
    <li>size     (optional) - sets the size of the popup modal (when 'thumbnail' is used) use 'sm', 'md', 'lg', 'xl'</li>
 </ul>
 <p>Note: if you wish to modify the template copy /Utilities/templates/youTubePlayer_template.tpl into assets/module_custom/Utilities/templates/youTubePlayer_template.tpl and modify that version. (Not changed by module upgrades).</p>
+<br>
+
+
+
+<h3>vimeoPlayer</h3>
+<p>{vimeoPlayer videoid='32001208'} imbeds a vimeo video player in the page. Requires Bootstrap CSS.</p>
+<p>uses "?rel=0&modestbranding=1" to hide related videos at end and show minimal vimeo branding</p>
+<p>iframe is always responsive - height & width paramaters no longer supported (v1.8)</p>
+<p>Parameters:</p>
+<ul>
+   <li>videoid  (required)</li>
+   <li>class    (optional) - additional classes to be added into the class attribute</li>
+   <li>aspect   (optional) - specify aspect ratio '16by9' (default) or '4by3'</li>
+</ul>
+<p>Note: if you wish to modify the template copy /Utilities/templates/vimeoPlayer_template.tpl into assets/module_custom/Utilities/templates/vimeoPlayer_template.tpl and modify that version. (Not changed by module upgrades).</p>
 <br>
 
 
@@ -353,6 +369,13 @@ EOD;
 #########  ###    ###  ###    ###  ###    ###  #########  ########  ######### #########  #########
 
 $lang['changelog'] = <<<'EOD'
+
+<h3>Version 1.9 - 05Jan24</h3>
+<ul>
+   <li>vimeoPlayer - added new functionality</li>
+</ul>
+<br>
+
 
 <h3>Version 1.8 - 02Aug23</h3>
 <ul>

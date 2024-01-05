@@ -35,7 +35,7 @@ $fn = cms_join_path(__DIR__,'function.googleMap.php'); require_once($fn);
 
 class Utilities extends \CMSModule {
 
-   public function GetVersion() { return '1.8'; }
+   public function GetVersion() { return '1.9'; }
    public function GetFriendlyName() { return 'Utilities'; }
    public function GetAdminDescription() { return $this->Lang('admindescription'); }
    public function IsPluginModule() { return TRUE; }
@@ -50,31 +50,33 @@ class Utilities extends \CMSModule {
    public function UninstallPreMessage() { return $this->Lang('ask_uninstall'); }
 
 
-   public function __construct() {
-      parent::__construct();
+    public function __construct() 
+    {
+        parent::__construct();
 
-      $smarty = \CmsApp::get_instance()->GetSmarty();
-      if( !$smarty ) return;
+        $smarty = \CmsApp::get_instance()->GetSmarty();
+        if( !$smarty ) return;
 
-      // register functions - leave simple functions in this file
-      $smarty->register_function('content_type', array($this, 'content_type') );
-      $smarty->register_function('galleryCovers', array($this, 'galleryCovers') );
-      $smarty->register_function('googleFontUrl', array($this, 'googleFontUrl') );
-      $smarty->register_function('getCustomGS', array($this, 'getCustomGS') );
-      $smarty->register_function('adminUser', array($this, 'adminUser') );
-      $smarty->register_function('instagramFeed', array($this, 'instagramFeed') );
+        // register functions - leave simple functions in this file
+        $smarty->register_function('content_type', array($this, 'content_type') );
+        $smarty->register_function('galleryCovers', array($this, 'galleryCovers') );
+        $smarty->register_function('googleFontUrl', array($this, 'googleFontUrl') );
+        $smarty->register_function('getCustomGS', array($this, 'getCustomGS') );
+        $smarty->register_function('adminUser', array($this, 'adminUser') );
+        $smarty->register_function('instagramFeed', array($this, 'instagramFeed') );
+        $smarty->register_function('vimeoPlayer', array($this, 'vimeoPlayer') );
 
 
-      // register functions - put more complex functions in separate function.Name.php file
-      $smarty->register_function('cssMinifier', 'cssMinifier');
-      $smarty->register_function('youTubePlayer', 'youTubePlayer');
-      $smarty->register_function('editContentTabs', 'editContentTabs');
-      $smarty->register_function('twitterFeed', 'twitterFeed');
-      $smarty->register_function('facebookFeed', 'facebookFeed');
-      $smarty->register_function('adminActionUrl', 'adminActionUrl');
-      $smarty->register_function('googleMap', 'googleMap');
+        // register functions - put more complex functions in separate function.Name.php file
+        $smarty->register_function('cssMinifier', 'cssMinifier');
+        $smarty->register_function('youTubePlayer', 'youTubePlayer');
+        $smarty->register_function('editContentTabs', 'editContentTabs');
+        $smarty->register_function('twitterFeed', 'twitterFeed');
+        $smarty->register_function('facebookFeed', 'facebookFeed');
+        $smarty->register_function('adminActionUrl', 'adminActionUrl');
+        $smarty->register_function('googleMap', 'googleMap');
 
-   }
+    }
 
 
 
@@ -225,17 +227,31 @@ class Utilities extends \CMSModule {
    }
 
 
-   /**
-    * outputs an instagram feed
-    *
-    * @param template - optional DM template to use
-    */
-   function instagramFeed($params, $smarty) 
-   {
-      $feed = new instagramFeed;
-      $feed->getMedia();
-      $feed->display($params, $smarty);
-   }
+
+    /**
+     *  outputs an instagram feed
+     *
+     *  @param template - optional DM template to use
+     */ 
+    function instagramFeed($params, $smarty) 
+    {
+        $feed = new instagramFeed;
+        $feed->getMedia();
+        $feed->display($params, $smarty);
+    }
+
+
+
+    /**
+     *  outputs an vimeo video
+     *
+     */ 
+    function vimeoPlayer($params, $smarty) 
+    {
+        $video = new vimeoPlayer;
+        $video->output($params, $smarty);
+    }
+
 
 
 }
